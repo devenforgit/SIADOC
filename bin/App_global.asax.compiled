@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="8" virtualPath="/Fonafe.SCGDE/global.asax" hash="fffffffff9169030" filehash="400f1c3d16d6" flags="150000" assembly="App_global.asax" type="ASP.global_asax">
+    <filedeps>
+        <filedep name="/Fonafe.SCGDE/global.asax" />
+    </filedeps>
+</preserve>

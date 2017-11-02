@@ -1,0 +1,19 @@
+﻿.MyGridView 
+{
+	font-family: Arial;
+	font-size: 12px;
+}
+
+.MyGridView tr.row
+{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+.MyGridView tr.row:hover
+{
+	background-image: url('../img/GridViewBG.jpg');
+	background-repeat: repeat-x;
+	color: #333333;
+}
+

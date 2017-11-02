@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<MENU>
+  <MAESTROS>
+    <Clientes>CLIENTES</Clientes>
+    <Servicios>SERVICIOS</Servicios>
+  </MAESTROS>
+  <OPERACIONES>
+    <OP1>REGISTRA SESION</OP1>
+    <OP2>REGISTRA ACUERDO</OP2>
+  </OPERACIONES>
+</MENU>

@@ -1,0 +1,43 @@
+﻿<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<%@ Register Assembly="Anthem" Namespace="Anthem" TagPrefix="anthem" %>
+
+<anthem:GridView  runat="server" EmptyDataText="No existen registros" 
+    AutoGenerateColumns="False" CaptionAlign="Bottom" CellPadding="4" 
+    ForeColor="#8F8F8F" GridLines="Horizontal" AllowPaging="True"
+     BorderStyle="Solid" BorderWidth="1px"  >
+    <FooterStyle BackColor="#B1B1B1" Font-Bold="True" ForeColor="White" />
+    <RowStyle ForeColor="#333333" />
+     <PagerStyle BackColor="Gainsboro" ForeColor="#757575" HorizontalAlign="Center" />
+    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+    <HeaderStyle BackColor="Gainsboro" Font-Bold="True" ForeColor="#757575" Height="20px" />
+    <EditRowStyle BackColor="#999999" />
+    <AlternatingRowStyle BackColor="White" />
+    <PagerSettings PageButtonCount="10" />
+</anthem:GridView>
+
+<anthem:button runat="server" CssClass="smallbutton" />
+
+<asp:button runat="server" CssClass="smallbutton" />
+
+<anthem:DropDownList runat="server" CssClass="smalltext" />
+
+<asp:DropDownList runat="server" CssClass="smalltext" />
+
+<anthem:textbox runat="server" CssClass="smalltext" />
+
+<asp:textbox runat="server" CssClass="smalltext" />
+  <asp:FileUpload runat="server" CssClass="smalltext" />

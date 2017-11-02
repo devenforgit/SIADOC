@@ -1,0 +1,254 @@
+ <%@ master language="VB" inherits="MasterPages_Logon, App_Web_2fdxc5yr" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>.: FONAFE :.</title>
+
+    <script language="javascript" type="text/jscript">
+        function selArea(dest, source) {
+            document.getElementById(dest).value = source.options[source.selectedIndex].value;
+            window.alert(source.options[source.selectedIndex].value);
+        }
+
+        function openAdjuntos(IdTemp, type) {
+            window.open('../Catalogacion/DocumentoAdjunto_Temp_Form.aspx?IdTemp=' + IdTemp + '&type=' + type, 'popUp', 'width=300,height=450,resisable=yes,toolbar=no');
+        }
+
+        function openDocumentos(IdTramite) {
+            window.open('DocumentoSTD_Form.aspx?IdTransaccion=' + IdTramite, 'popUp1', 'width=550,height=500,resizable=yes,toolbar=no');
+        }
+        function abrirVisor(ventana) {
+            temp = window.open(ventana, "rep", "top=0,left=0,menubar=yes, resizable=yes")
+        }
+        function abrirPopUp(ventana) {
+            temp = window.open(ventana, "rep", "top=0,left=0,menubar=no, resizable=no, width=850,height=500, scrollbars=yes")
+        }
+
+
+        function confirmDelete(toDel) {
+
+            var res = window.confirm('Realmente desea eliminar este registro?');
+            if (res) {
+                //si encuentra el boton eliminar lo llama ahi esta la logica para eliminar registros y en un hidden se pone el codigo del q se elimina
+                var hdn = document.getElementById('ctl00_ContentPlaceHolder1_hdnId');
+                var btn = document.getElementById('ctl00$ContentPlaceHolder1$btnEliminar');
+                if (hdn != null && btn != null) {
+                    hdn.value = toDel;
+                    btn.click();
+                }
+            }
+        }
+        function change(file, txt) {
+            var obj = document.getElementById('ctl00_ContentPlaceHolder1_' + txt);
+            if (obj != null) {
+                //alert('El archivo seleccionad es ') + file.value;
+                obj.value = file.value;
+                //alert(file.value);
+            }
+
+        }
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" style="height: 100%;
+            width: 900px; border: thin solid">
+            <tr>
+                <td align="left" colspan="4" valign="top">
+                    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+                        <tr>
+                            <td style="height: 100px">
+                                <asp:Image ID="Logo" runat="server" ImageUrl="~/Img/FonafeLogo.jpg" />
+                            </td>
+                            <td>
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left">
+                                            <asp:Label ID="lblUser" CssClass="smalltext" runat="server" Text="Usuario: "></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left">
+                                            <asp:Label ID="lblIP" CssClass="smalltext" runat="server" Text="IP: "></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: right;">
+                                            <asp:LinkButton ID="hplLogout" CausesValidation="false" CssClass="smalltext" runat="server"
+                                                NavigateUrl="~/Login.aspx">Salir</asp:LinkButton>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" colspan="4" style="height: 16px" valign="top">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="1" valign="top" style="width: 50px" bgcolor="Gainsboro">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblDescNombre" runat="server" CssClass="bigtextbold" Text="Corporación FONAFE"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 30px">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;" valign="top">
+                                <asp:Menu ID="mnPage" runat="server" BackColor="Gainsboro" DynamicHorizontalOffset="2"
+                                    Font-Names="Verdana" Font-Overline="False" ForeColor="#7C6F57" StaticSubMenuIndent="10px"
+                                    Font-Underline="False" StaticBottomSeparatorImageUrl="~/Img/hline.jpg" Font-Size="0.8em">
+                                    <StaticSelectedStyle BackColor="#5D7B9D" Font-Names="Arial" />
+                                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                                    <DynamicHoverStyle BackColor="Silver" ForeColor="White" />
+                                    <DynamicMenuStyle BackColor="#F7F6F3" />
+                                    <DynamicSelectedStyle BackColor="#5D7B9D" />
+                                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" Font-Size="X-Small" />
+                                    <StaticHoverStyle BackColor="#7C6F57" Font-Names="Arial" ForeColor="White" />
+                                    <Items>
+                                        <asp:MenuItem NavigateUrl="~/Bienvenida.aspx" Text="Inicio" Value="Inicio">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Administracion" Value="Administracion">
+                                            <asp:MenuItem Text="Usuarios" Value="RegistraUsuarios" NavigateUrl="~/Administracion/RegistraUsuarios.aspx" />
+                                            <asp:MenuItem Text="Perfiles" Value="RegistraPerfiles" NavigateUrl="~/Administracion/RegistraPerfiles.aspx" />
+                                            <asp:MenuItem Text="Modulos" Value="RegistraModulos" NavigateUrl="~/Administracion/RegistraModulos.aspx" />
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Parametros" Value="Parametros">
+                                            <asp:MenuItem Text="Empresas" Value="Empresas_Form" NavigateUrl="~/Maestros/Empresas_Form.aspx" />
+                                            <asp:MenuItem Text="Areas" Value="Areas_Form" NavigateUrl="~/Administracion/Areas_Form.aspx" />
+                                            <asp:MenuItem Text="Archivos" Value="MaeArchivo_Form" NavigateUrl="~/Maestros/MaeArchivo_Form.aspx" />
+                                            <asp:MenuItem Text="Tipo Proceso" Value="TipoProceso_Form" NavigateUrl="~/Maestros/TipoProceso_Form.aspx" />
+                                            <asp:MenuItem Text="Gerencias" Value="Gerencias_Form" NavigateUrl="~/Maestros/Gerencias_Form.aspx" />
+                                            <asp:MenuItem Text="Temas" Value="Temas_Form" NavigateUrl="~/Maestros/Temas_Form.aspx" />
+                                            <asp:MenuItem Text="Tipo Documentos - Catalogacion" Value="TipoDocumento_Form" NavigateUrl="~/Maestros/TipoDocumento2_Form.aspx" />
+                                            <asp:MenuItem Text="Tipo Documentos - Préstamos" Value="TipoDocumento2_Form2" NavigateUrl="~/Maestros/TipoDocumento_Form.aspx" />
+                                            <asp:MenuItem Text="Carteras" Value="Carteras_Form" NavigateUrl="~/Maestros/Carteras_Form.aspx" />
+                                            <asp:MenuItem Text="Series Documentales" Value="Series_Form" 
+                                                NavigateUrl="~/Maestros/Series_Form.aspx" />
+                                            <asp:MenuItem Text="Sub Series" Value="SubSeries_Form" 
+                                                NavigateUrl="~/Maestros/SubSeries_Form.aspx" />
+                                            <asp:MenuItem Text="Secciones" Value="Secciones_Form" 
+                                                NavigateUrl="~/Maestros/Secciones_Form.aspx" />
+                                            <asp:MenuItem NavigateUrl="~/Maestros/SubSecciones_Form.aspx" 
+                                                Text="Sub Secciones" Value="SubSecciones_Form" />
+                                            <asp:MenuItem Text="Fondos Documentales" Value="FondoDoc_Form" 
+                                                NavigateUrl="~/Maestros/FondoDoc_Form.aspx" />
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Documentos" Value="Documentos">
+                                            <asp:MenuItem Text="Nuevo Documentos" Value="RegistrarDocumentos" 
+                                                NavigateUrl="~/Prestamos/RegistrarDocumentos.aspx" />
+                                            <asp:MenuItem Text="Mantenimiento de Documentos" Value="ConsultaDocumentos" 
+                                                NavigateUrl="~/Prestamos/ConsultaDocumentos.aspx" />
+                                            <asp:MenuItem Text="Carga Masiva de  Documentos" Value="CargaDocumentos" 
+                                                NavigateUrl="~/Prestamos/CargaDocumentos.aspx" />
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Prestamos" Value="Prestamos">
+                                            <asp:MenuItem NavigateUrl="~/Prestamos/AceptarAsignacion.aspx" 
+                                                Text="Aceptar reasignacion" Value="AceptarAsignacion"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Prestamos/ReasignarPrestamo.aspx" 
+                                                Text="Re-asignar Prestamo" Value="ReasignarPrestamo"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Prestamos/AtenderSolicitudes.aspx" 
+                                                Text="Atender Solicitudes" Value="AtenderSolicitudes"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Prestamos/CerrarPrestamo.aspx" 
+                                                Text="Cerrar Prestamo" Value="CerrarPrestamo"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Prestamos/ImportarDocumentosSTD.aspx" 
+                                                Text="Importar Documentos del STD" Value="ImportarDocumentosSTD">
+                                            </asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Solicitudes" Value="Solicitudes">
+                                            <asp:MenuItem Text="Documento General" Value="SolicitudPrestamo" NavigateUrl="~/Prestamos/SolicitudPrestamo.aspx" />
+                                            <asp:MenuItem Text="Expedientes GLC" Value="ExpedientesGLC" NavigateUrl="~/Prestamos/ExpedientesGLC.aspx" />
+                                            <asp:MenuItem Text="Documentos STD" Value="DocumentosSTD" NavigateUrl="~/Prestamos/DocumentosSTD.aspx" />
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Catalogaci&#243;n" Value="Catalogaci&#243;n">
+                                            <asp:MenuItem Text="Mantenimiento de Catálogos" Value="Indices_Form" 
+                                                NavigateUrl="~/Catalogacion/Indices_Form.aspx" />
+                                            <asp:MenuItem Text="Carga Masiva de Catálogos" Value="Cargas_Form" 
+                                                NavigateUrl="~/Catalogacion/Cargas_Form.aspx" />
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/RegistroInventario.aspx" Text="Inventario" 
+                                            Value="Registrat Inventario">
+                                            <asp:MenuItem NavigateUrl="~/Inventario/RegistroInventario.aspx" Text="Registrar Nueva UC" 
+                                                Value="RegistroInventario"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Inventario/ListadoInventario.aspx" 
+                                                Text="Mantenimiento UCs" Value="ListadoInventario"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Inventario/RegistrarMovimientos.aspx" Text="Registrar Movimientos" 
+                                                Value="RegistrarMovimientos"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Inventario/CargaMasivaUC.aspx" 
+                                                Text="Importar Datos Excel" Value="CargaMasivaUC.aspx"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Consultas y Reportes" Value="ConsultasYReportes">
+                                            <asp:MenuItem Text="Catalogacion" Value="Busqueda_Form" 
+                                                NavigateUrl="~/Reportes/Busqueda_Form.aspx" />
+                                            <asp:MenuItem Text="Favoritos" Value="Favoritos_Form" NavigateUrl="~/Reportes/Favoritos_Form.aspx" />
+                                            <asp:MenuItem Text="Documentos" Value="ReporteDocumentos" NavigateUrl="~/Prestamos/Reportes/ReporteDocumentos.aspx" />
+                                            <asp:MenuItem Text="Prestamos" Value="ReportePrestamos" NavigateUrl="~/Prestamos/Reportes/ReportePrestamos.aspx" />
+                                            <asp:MenuItem Text="Solicitudes" Value="ReporteSolicitudes" NavigateUrl="~/Prestamos/Reportes/ReporteSolicitudes.aspx" />
+                                            <asp:MenuItem NavigateUrl="~/Consultas/ConsultarInventario.aspx" Text="Unidades de Conservación" 
+                                                Value="ConsultarInventario">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Consultas/ConsultarUC.aspx" 
+                                                Text="Codigo de Barras" Value="ConsultarUC"></asp:MenuItem>
+                                            <asp:MenuItem Text="Movimiento Precintos" 
+                                                Value="ConsultarMovimientoPrecinto" 
+                                                NavigateUrl="~/Consultas/ConsultarMovimientoPrecinto.aspx"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/Consultas/ConsultarMovimientoUC.aspx" 
+                                                Text="Movimientos" Value="ConsultarMovimientoUC"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                    </Items>
+                                </asp:Menu>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 30px">
+                </td>
+                <td align="center" colspan="2" style="width: 795px; padding-right: 10px">
+                    <div class="smalltextblue">
+                        <asp:Label ID="lblMapPath" runat="server" Text=""></asp:Label>
+                    </div>
+                    <br />
+                    <div class="smalltext">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" colspan="4" style="height: 16px" valign="top">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#336699" colspan="4" style="background-color: white; text-align: left;
+                    font-size: 8pt; color: #ffffff; font-family: Arial">
+                    <div class="smalltext" style="padding: 10px 10px 10px 10px">
+                        Av. Paseo de La Republica 3121, San Isidro, Lima - Telf. (01)440-4222
+                        <br />
+                        http://www.fonafe.gob.pe
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span id="spnTip" style="position: absolute; visibility: hidden; background: lightyellow;
+        border: 1px solid gray; padding: 2px; font-size: 8pt; font-family: Verdana;"
+        onmouseout="hideTip()"></span>
+    </form>
+</body>
+</html>
